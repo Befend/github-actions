@@ -1,0 +1,26 @@
+{
+  "name": "github-actions",
+  "version": "1.0.0",
+  "description": "每日自动创建issues\r + 自动执行\r + 使用 js 来创建 issues",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build index.js --license license.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Befend/github-actions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Befend/github-actions/issues"
+  },
+  "homepage": "https://github.com/Befend/github-actions#readme",
+  "devDependencies": {
+    "@actions/core": "^1.10.0",
+    "@vercel/ncc": "^0.31.1",
+    "octokit": "^2.0.10"
+  }
+}
