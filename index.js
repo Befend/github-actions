@@ -1,27 +1,41 @@
-// github api
-// octokit
-const { Octokit } = require("octokit");
 const core = require("@actions/core");
+const github = require("@actions/github");
 const dayjs = require("dayjs");
 
-const token = core.getInput("token");
-// Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-const octokit = new Octokit({ auth: token });
+(function main() {
+  const token = core.getInput("token");
+  const octokit = github.getOctokit(token);
 
-// creates an installation access token as needed
-// assumes that installationId 123 belongs to @octocat, otherwise the request will fail
-octokit.rest.issues.create({
-  owner: "Befend",
-  repo: "create actions",
-  title: getTitle(),
-  body: getBody()
-});
+  createIssue(octokit);
+})();
 
-
-function getTitle() {
-  return dayjs().format("YYYY-MM-DD");
+function createIssue(octokit) {
+  octokit.rest.issues.create({
+    owner: "Befend",
+    repo: "daily-share",
+    title: getTitle(),
+    body: getBody(),
+  });
 }
 
 function getBody() {
-  return "[Github Docs](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action)";
+  return `可以从 what 和 why 的角度来描述要分享的内容
+  - what 是指要分享的是什么
+  - why 是指为什么分享
+ 
+比如：
+    推荐一篇讲解 vue3  diff 算法的文章（what）
+    文章里面通过大量的图片和可运行的demo来讲解 vue3 的 diff 算法  看完秒懂（why）
+`
+}
+
+function getTitle() {
+  return "【每日分享】" + getDate();
+}
+
+function getDate() {
+  // 运行环境是 UTC 时区
+  // 需要转换成 中国时区
+  // 中国时区 = UTC时区 + 8小时
+  return dayjs().add("8", "hour").format("YYYY-MM-DD");
 }
