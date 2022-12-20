@@ -2,6 +2,8 @@
 // octokit
 const { Octokit } = require("octokit");
 const core = require("@actions/core");
+const dayjs = require("dayjs");
+
 const token = core.getInput("token");
 // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
 const octokit = new Octokit({ auth: token });
