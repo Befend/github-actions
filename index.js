@@ -1,7 +1,7 @@
 const { Octokit } = require("octokit");
 const core = require("@actions/core");
 const dayjs = require("dayjs");
-// nodejs12
+// nodejs16
 
 const token = core.getInput("token");
 const octokit = new Octokit({
@@ -11,8 +11,8 @@ const octokit = new Octokit({
 // octokit api create issue
 
 octokit.rest.issues.create({
-  owner: "cuixiaorui",
-  repo: "teach-create-issues-action",
+  owner: "Befend",
+  repo: "create-issues-action",
   title: getTitle(),
   body: getBody(),
 });

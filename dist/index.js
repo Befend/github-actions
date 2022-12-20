@@ -19696,7 +19696,7 @@ var __webpack_exports__ = {};
 const { Octokit } = __nccwpck_require__(7467);
 const core = __nccwpck_require__(2186);
 const dayjs = __nccwpck_require__(7401);
-// nodejs12
+// nodejs16
 
 const token = core.getInput("token");
 const octokit = new Octokit({
@@ -19706,8 +19706,8 @@ const octokit = new Octokit({
 // octokit api create issue
 
 octokit.rest.issues.create({
-  owner: "cuixiaorui",
-  repo: "teach-create-issues-action",
+  owner: "Befend",
+  repo: "create-issues-action",
   title: getTitle(),
   body: getBody(),
 });
